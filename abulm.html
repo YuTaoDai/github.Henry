@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <style>
+        .swiper-zoom-container{
+            height: 500px;
+            width: 100%;
+         /*  // overflow-y: scroll;*/
+        }
+        .swiper-zoom-container img{
+            display: block;
+            max-width: 100%;
+            text-align: center;
+        }
+        .addr{
+            position: absolute;
+            right: 45%;
+            bottom: 0px;
+            background-image: linear-gradient(135deg, blue,pink);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="swiper">
+    <div class="swiper-wrapper list" id="list">
+  <!--      <div class="swiper-slide">
+            <div class="swiper-zoom-container">
+                <img src="./images/1.jpg"/>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="swiper-zoom-container">
+                <img src="./images/2.jpg"/>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="swiper-zoom-container">
+                <img src="./images/3.jpg"/>
+            </div>
+        </div>-->
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
+<script src="js/jq.js"></script>
+<script src="js/swiper-bundle.min.js"></script>
+<script src="js/list.js"></script>
+<script src="js/temp.js"></script>
+<script id="ablum" type="text/html">
+    {{each images value }}
+    <div class="swiper-slide" data-url="{{value.url}}">
+        <div class="swiper-zoom-container">
+            <img src="{{value.url}}"/>
+            <span class="addr">in {{value.addr}}</span>
+        </div>
+    </div>
+    {{/each }}
+</script>
+<script>
+    var list_images = template('ablum', data);
+    document.getElementById('list').innerHTML = list_images;
+    var swiper = new Swiper(".swiper", {
+        zoom: true,
+        //slidesPerView: 2,
+        autoHeight: true,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+</script>
+</body>
+</html>

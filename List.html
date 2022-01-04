@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=2.0,user-scalable=1"/>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <style>
+
+    </style>
+    <script>
+
+        // 调用方法 $('#a').append(render('template', data))
+    </script>
+</head>
+<body>
+<!--
+<section class="section">
+    <div class="section-header">
+        <div class="love">I LOVE YOU</div>
+        <div class="lover-name">
+            <div>代语涛</div>
+            <svg viewBox="0 0 103 103" version="1.1" xmlns="http://www.w3.org/2000/svg" class="dashed-border">
+                <circle cx="50%" cy="50%" r="50"></circle>
+            </svg>
+            <div>杨欣雨</div>
+        </div>
+    </div>
+
+</section>
+<section class="section-our-story">
+    <div class="our-story">
+        <div class="section-our-story-header">
+            <h2>Our love story</h2>
+            <div>The Story of our love</div>
+            <div>这就是我们的爱情故事</div>
+            <div>同一个愿望,相爱.我爱你,至死不渝</div>
+        </div>
+        <div>我们的相遇是意外的，但这是一个美丽幸福的意外，让我遇到了这么好的你</div>
+        <div>莎士比亚说过：爱情是一种甜蜜的痛苦，但是我愿意忍受这种痛苦，莎士比亚还说过，世界上没有比服侍爱情更快乐的了，你愿不愿意享受这种快乐？当然你是愿意的~嘿嘿</div>
+        <div>之前我不相信一见钟情，但是见到你的那一刻，我否定了我的看法。我的心为你沦陷，从此只为你跳动</div>
+        <div>有一种爱的感觉，叫感同身受。有一种爱的默契，叫心有灵犀。有一种爱的承诺，叫天长地久</div>
+    </div>
+</section>-->
+<section class="section-abulm">
+    <!--    <div>
+            <h2>爱的相册</h2>
+            <p>Main ceremony - Wedding party</p>
+        </div>-->
+    <ul id="list-images">
+        <!--    <li>
+                <img class="list-images" src="./images/1.jpg" alt="">
+                <div>
+                    <p>以下还小小的对比了下自定义模板和doT.js的渲染性能，当然这对doT.js并不公平，因为我只实现了很小的一个功能</p>
+                    <p>以下还小小的对比了下自定义模板和doT.js的渲染性能，当然这对doT.js并不公平，因为我只实现了很小的一个功能</p>
+                    <div class="textright">2020-10-1 <span>in 四川❤雅安</span></div>
+                </div>
+            </li>-->
+        <!--    <li><img src="./images/bg.jpg" alt=""></li>
+            <li><img src="./images/bg.jpg" alt=""></li>
+            <li><img src="./images/bg.jpg" alt=""></li>
+            <li><img src="./images/bg.jpg" alt=""></li>
+            <li><img src="./images/bg.jpg" alt=""></li>
+            <li><img src="./images/bg.jpg" alt=""></li>-->
+    </ul>
+</section>
+<!--<section class="section-dinner">
+    <div>
+        <h2>Save the date</h2>
+        <div class="time"></div>
+    </div>
+
+</section>
+<section class="section-heart">
+    <div>
+        <div>❤</div>
+        <div>
+            执子之手,与子携老
+        </div>
+    </div>
+
+</section>
+<footer>
+    © love. 代语涛 & 杨欣雨
+</footer>-->
+<div class="swiper">
+    <div class="swiper-wrapper list"id="list">
+        <div class="swiper-slide">
+            <div class="swiper-zoom-container">
+                <img src="./images/1.jpg"/>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="swiper-zoom-container">
+                <img src="./images/2.jpg"/>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="swiper-zoom-container">
+                <img src="./images/3.jpg"/>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
+<script id="header" type="text/html">
+    {{each element value }}
+    <header>
+        <h1>{{element.header}}</h1>
+    </header>
+
+    {{/each }}
+    <!--升级后：Template upgrade: ｛each object as value index｝ -> ｛each object value index｝ -->
+</script>
+
+<script id="template" type="text/html">
+    {{each list value }}
+    <li>
+        <a href="{{value.link}}" class="link">
+            <img class="list-images" src="{{value.url}}" alt="">
+            <div>
+                <p class="desc">{{value.desc}}</p>
+                <p class="things">{{value.things}}</p>
+                <div class="textright">{{ value.time }}<span>in {{value.addr}}</span></div>
+            </div>
+        </a>
+    </li>
+    {{/each }}
+    <!--升级后：Template upgrade: ｛each object as value index｝ -> ｛each object value index｝ -->
+</script>
+<script src="js/jq.js"></script>
+<script src="js/swiper-bundle.min.js"></script>
+<script src="js/list.js"></script>
+<script src="js/temp.js"></script>
+
+<script>
+/*    var arr=[]
+    for(var i =1;i<30;i++){
+        arr.push({addr:"四川❤雅安",url:"./images/"+i+".jpg"})
+        console.log(JSON.stringify(arr))
+    }*/
+    var list_images = template('template', data);
+    document.getElementById('list-images').innerHTML = list_images;
+
+/*    var ablum = template('template', data.images);
+    document.getElementById('list').innerHTML = ablum;*/
+    /* var html = template('template', data);
+     document.getElementById('list-images').innerHTML = html;*/
+    //$('#list-images').append(render('template', list))
+
+    var swiper = new Swiper(".swiper", {
+        zoom: true,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+
+    var start_time = "2021-10-1 00:00:00";
+    var together = new Date(start_time.replace(/-/g, "/"));
+    timeElapse(together);
+    setInterval(function () {
+        timeElapse(together);
+    }, 500);
+
+    function timeElapse(c) {
+        var e = Date();
+        var f = (Date.parse(e) - Date.parse(c)) / 1000;
+        var g = Math.floor(f / (3600 * 24));
+        f = f % (3600 * 24);
+        var b = Math.floor(f / 3600);
+        if (b < 10) {
+            b = "0" + b
+        }
+        f = f % 3600;
+        var d = Math.floor(f / 60);
+        if (d < 10) {
+            d = "0" + d
+        }
+        f = f % 60;
+        if (f < 10) {
+            f = "0" + f
+        }
+        var html = '<span class="digit">' + g + '</span> days <span class="digit">' + b + '</span> hours <span class="digit">' + d + '</span> minutes <span class="digit">' + f + "</span> seconds";
+        $(".time").html(html)
+    };
+</script>
+</body>
+</html>

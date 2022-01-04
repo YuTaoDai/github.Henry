@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="./css/index.css">
+    <style>
+        .section-detail{
+            padding: 11px 15px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<section class="section-detail">
+    <div>title</div>
+    <div class="textright">2020-10-1<span>in </span></div>
+    <div class="content">
+
+    </div>
+</section>
+<script src="js/jq.js"></script>
+<script src="js/list.js"></script>
+<script>
+    const val = location.search.split("=")[1];
+    const detailData = data.list[val];
+    document.title = detailData.title;
+    console.log(detailData);
+    $("body").html(detailData);
+</script>
+</body>
+</html>
