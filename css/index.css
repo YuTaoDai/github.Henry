@@ -66,9 +66,8 @@ section > * {
 .love-icon {
     position: absolute;
     left: 44%;
-    top: 4.5px;
+    top: 10px;
     z-index: 100;
-
     font-size: 1.5rem;
     display: block;
     animation:love 1.5s infinite;
