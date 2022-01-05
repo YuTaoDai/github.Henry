@@ -6,7 +6,15 @@
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/swiper.min.css">
     <style>
-
+        .dashed-border::after {
+            width: 20px;
+            height: 20px;
+            content: "❤";
+            color: white;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
     </style>
     <script>
 
@@ -17,9 +25,10 @@
 
 <section class="section">
     <div class="section-header">
-        <div class="love">I LOVE YOU</div>
+        <div class="love scaleele">I LOVE YOU</div>
         <div class="lover-name">
             <div>代语涛</div>
+            <span class=" love-icon">❤</span>
             <svg viewBox="0 0 103 103" version="1.1" xmlns="http://www.w3.org/2000/svg" class="dashed-border">
                 <circle cx="50%" cy="50%" r="50"></circle>
             </svg>
@@ -31,8 +40,8 @@
 <section class="section-our-story">
     <div class="our-story">
         <div class="section-our-story-header">
-            <h2 class="white">Our love story</h2>
-            <div class="white">The Story of our love</div>
+            <h2 class="white scaleele">Our love story</h2>
+            <div class="white scaleele">The Story of our love</div>
             <div class="white">这就是我们的爱情故事</div>
             <div class="white">同一个愿望,相爱.我爱你,至死不渝</div>
         </div>
@@ -43,68 +52,55 @@
     </div>
 </section>
 <section class="section-abulm">
-   <div>
-            <h2 class="white">爱的相册</h2>
-            <p class="white"> Main ceremony - Wedding party</p>
-        </div>-->
+    <div>
+        <h2 class="white ">爱的相册</h2>
+        <p class="white "> Main ceremony - Wedding party</p>
+    </div>
+    -->
     <ul id="list-images">
-        <!--    <li>
-                <img class="list-images" src="./images/1.jpg" alt="">
-                <div>
-                    <p>以下还小小的对比了下自定义模板和doT.js的渲染性能，当然这对doT.js并不公平，因为我只实现了很小的一个功能</p>
-                    <p>以下还小小的对比了下自定义模板和doT.js的渲染性能，当然这对doT.js并不公平，因为我只实现了很小的一个功能</p>
-                    <div class="textright">2020-10-1 <span>in 四川❤雅安</span></div>
+<!--        <div class="swiper">
+            <div class="swiper-wrapper list" id="list">
+                <div class="swiper-slide">
+                    <div class="swiper-zoom-container">
+                        <img src="./images/1.jpg"/>
+                    </div>
                 </div>
-            </li>-->
-        <!--    <li><img src="./images/bg.jpg" alt=""></li>
-            <li><img src="./images/bg.jpg" alt=""></li>
-            <li><img src="./images/bg.jpg" alt=""></li>
-            <li><img src="./images/bg.jpg" alt=""></li>
-            <li><img src="./images/bg.jpg" alt=""></li>
-            <li><img src="./images/bg.jpg" alt=""></li>-->
+                <div class="swiper-slide">
+                    <div class="swiper-zoom-container">
+                        <img src="./images/2.jpg"/>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="swiper-zoom-container">
+                        <img src="./images/3.jpg"/>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>-->
     </ul>
 </section>
 <section class="section-dinner">
     <div>
-        <h2 class="white">Save the date</h2>
+        <h2 class="white ">Save the date</h2>
         <div class="time white"></div>
     </div>
-
 </section>
 <section class="section-heart">
     <div>
-        <div  class="white">❤</div>
-        <div  class="white">
+        <span class="white section-heart-love">❤</span>
+        <div class="white ">
             执子之手,与子携老
         </div>
     </div>
 
 </section>
-<footer  class="white">
+<footer class="white">
     © love. 代语涛 & 杨欣雨
 </footer>
-<div class="swiper">
-    <div class="swiper-wrapper list"id="list">
-        <div class="swiper-slide">
-            <div class="swiper-zoom-container">
-                <img src="./images/1.jpg"/>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="swiper-zoom-container">
-                <img src="./images/2.jpg"/>
-            </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="swiper-zoom-container">
-                <img src="./images/3.jpg"/>
-            </div>
-        </div>
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
-</div>
+
 <script id="header" type="text/html">
     {{each element value }}
     <header>
@@ -136,16 +132,16 @@
 <script src="js/temp.js"></script>
 
 <script>
-/*    var arr=[]
-    for(var i =1;i<30;i++){
-        arr.push({addr:"四川❤雅安",url:"./images/"+i+".jpg"})
-        console.log(JSON.stringify(arr))
-    }*/
+    /*    var arr=[]
+        for(var i =1;i<30;i++){
+            arr.push({addr:"四川❤雅安",url:"./images/"+i+".jpg"})
+            console.log(JSON.stringify(arr))
+        }*/
     var list_images = template('template', data);
     document.getElementById('list-images').innerHTML = list_images;
 
-/*    var ablum = template('template', data.images);
-    document.getElementById('list').innerHTML = ablum;*/
+    /*    var ablum = template('template', data.images);
+        document.getElementById('list').innerHTML = ablum;*/
     /* var html = template('template', data);
      document.getElementById('list-images').innerHTML = html;*/
     //$('#list-images').append(render('template', list))
@@ -155,6 +151,17 @@
         navigation: {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
+        },
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
         },
         pagination: {
             el: ".swiper-pagination",

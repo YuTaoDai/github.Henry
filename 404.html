@@ -1,32 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="./css/index.css">
+    <meta charset="utf-8">
+    <title>Bootstrap 实例 - 简单的轮播（Carousel）插件</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
-        .section-detail{
-            padding: 11px 15px;
-            color: #fff;
+        .pauseBtn{
+            background: url(http://img1.wushang.com/img/2014/12/18/2810436.png) no-repeat;
+            background-size: 100% 100%;
+            position: fixed;
+            z-index: 100;
+            width: 30px;
+            height: 30px;
+            top: 15px;
+            right: 15px;
+        }
+        .rotate{
+            -webkit-animation:rotate 3s infinite linear ;
+            animation:rotate 3s infinite linear ;
+        }
+        @-webkit-keyframes rotate{
+            0%{transform: rotate(0deg);}
+            100%{transform: rotate(360deg);}
+        }
+        @keyframes rotate{
+            0%{transform: rotate(0deg);}
+            100%{transform: rotate(360deg);}
         }
     </style>
 </head>
 <body>
-<section class="section-detail">
-    <div>title</div>
-    <div class="textright">2020-10-1<span>in </span></div>
-    <div class="content">
-
-    </div>
-</section>
-<script src="js/jq.js"></script>
-<script src="js/list.js"></script>
-<script>
-    const val = location.search.split("=")[1];
-    const detailData = data.list[val];
-    document.title = detailData.title;
-    console.log(detailData);
-    $("body").html(detailData);
-</script>
+<audio autoplay="autoplay" loop="loop" id="autoPlayMuc">
+    <!--此处应放入不同格式的文件以兼容各种浏览器-->
+    <source src="http://img1.wushang.com/img/2017/mobile/music.mp3" type="audio/mpeg">
+    Your browser
+</audio>
+<div class="pauseBtn rotate">&nbsp;</div>
 </body>
+<script>
+    (function() {
+//              function autoPlayAudio(ele) {
+//                  var wxTimmer=setInterval(function(){
+//                      if (WeixinJSBridge!==undefined) {
+//                          clearInterval(wxTimmer);
+//                          WeixinJSBridge.invoke('getNetworkType', {}, function(e) {
+//                              // 在这里拿到 e.err_msg, 这里面就包含了所有的网络类型
+//                              // alert(e.err_msg);
+//                              ele.play();
+//                          });
+//                      }
+//                  },200);
+//              }
+//              //调用时传入一个原生audio元素
+//              autoPlayAudio(document.getElementById("autoPlayMuc"));
+        var pause=true;
+        document.getElementsByClassName("pauseBtn")[0].onclick=function(){
+            if (pause) {
+                pause=false;
+                document.getElementById("autoPlayMuc").pause();
+                this.style.background="url(http://img1.wushang.com/img/2014/12/18/2810436.png) no-repeat";
+                this.style.backgroundSize="100% 100%";
+            }else{
+                pause=true;
+                document.getElementById("autoPlayMuc").play();
+                this.style.background="url(http://img1.wushang.com/img/2014/12/18/2810436.png) no-repeat";
+                this.style.backgroundSize="100% 100%";
+            }
+
+        }
+    })();
+</script>
 </html>

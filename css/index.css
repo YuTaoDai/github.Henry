@@ -6,15 +6,17 @@
     /*    background-image: linear-gradient(135deg, blue,pink);
         background-clip: text;
         -webkit-background-clip: text;*/
-    color: transparent;
+   /* color: transparent;*/
 }
 
 .textright {
     text-align: right !important;
 }
-.white{
-    color: white!important;
+
+.white {
+    color: white !important;
 }
+
 body {
     background-color: rgb(245, 182, 179)
 }
@@ -61,6 +63,68 @@ section > * {
     color: white;
 }
 
+.love-icon {
+    position: absolute;
+    left: 45%;
+    top: 4.5px;
+    z-index: 100;
+
+    font-size: 1.5rem;
+    display: block;
+    animation:love 1.5s infinite;
+    -webkit-animation:love 1.5s infinite ;
+    -moz-animation: love 1.5s infinite;
+    -o-animation: love 1.5s infinite;
+}
+
+@keyframes love {
+    from {
+        transform: scale(.8);
+    }
+    to {
+        color: red;
+        transform: scale(1.2);
+    }
+}
+
+@-webkit-keyframes love /* Safari 与 Chrome */
+{
+    from {
+
+        transform: scale(.8);
+    }
+    to {
+        color: red;
+        transform: scale(1.2);
+    }
+}
+@keyframes _scale {
+    from {
+        transform: scale(.8);
+    }
+    to {
+        color: red;
+        transform: scale(1.2);
+    }
+}
+
+@-webkit-keyframes _scale /* Safari 与 Chrome */
+{
+    from {
+
+        transform: scale(.8);
+    }
+    to {
+        color: red;
+        transform: scale(1.2);
+    }
+}
+.scaleele{
+    animation:_scale 1.5s infinite;
+    -webkit-animation:_scale 1.5s infinite ;
+    -moz-animation: _scale 1.5s infinite;
+    -o-animation: _scale 1.5s infinite;
+}
 .lover-name > div {
     display: inline-block;
     color: white;
@@ -149,9 +213,15 @@ svg {
     width: 100%;
 
 }
-
-.section-heart > div > div:first-child {
-    font-size: 120px;
+.section-heart-love {
+    animation:love 1.5s infinite;
+    -webkit-animation:love 1.5s infinite ;
+    -moz-animation: love 1.5s infinite;
+    -o-animation: love 1.5s infinite;
+}
+.section-heart > div > span:first-child {
+    font-size: 3rem;
+    display: inline-block;
 }
 
 footer {
@@ -161,6 +231,9 @@ footer {
 @media only screen and (max-width: 768px) {
     .section-abulm > ul {
         display: block;
+    }
+    .section-dinner,.section-heart{
+        min-height: 200px!important;
     }
 }
 
