@@ -15,6 +15,23 @@
             left: 0;
             top: 0;
         }
+
+        .swiper {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 300px;
+            height: 300px;
+        }
+        .swiper-pagination{
+            color: white;
+        }
+
     </style>
     <script>
 
@@ -31,7 +48,8 @@
         <div class="love scaleele">I LOVE YOU</div>
         <div class="lover-name">
             <div>代语涛</div>
-            <svg class="icon love-icon" style="width: 1em;height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;"
+            <svg class="icon love-icon"
+                 style="width: 1em;height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;"
                  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="596">
                 <path d="M112.839 255.227l90.274 47.794 3.546 45.195-41.596 21.295-90.28-47.794 41.601-21.298-3.545-45.192z m0 0"
                       fill="#F8EBD5" p-id="597"></path>
@@ -76,33 +94,14 @@
 <section class="section-abulm">
     <div>
         <h2 class="white ">爱的相册</h2>
-        <p class="white "> Main ceremony - Wedding party</p>
+        <p class="white "> Main ceremony - Sharing party</p>
     </div>
-    -->
-    <ul id="list-images">
-        <!--        <div class="swiper">
-                    <div class="swiper-wrapper list" id="list">
-                        <div class="swiper-slide">
-                            <div class="swiper-zoom-container">
-                                <img src="./images/1.jpg"/>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="swiper-zoom-container">
-                                <img src="./images/2.jpg"/>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="swiper-zoom-container">
-                                <img src="./images/3.jpg"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>
-                </div>-->
-    </ul>
+    <div class="swiper">
+        <div class="swiper-wrapper" id="list-images">
+
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
 </section>
 <section class="section-dinner">
     <div>
@@ -128,7 +127,6 @@
     <header>
         <h1>{{element.header}}</h1>
     </header>
-
     {{/each }}
     <!--升级后：Template upgrade: ｛each object as value index｝ -> ｛each object value index｝ -->
 </script>
@@ -148,18 +146,22 @@
     {{/each }}
     <!--升级后：Template upgrade: ｛each object as value index｝ -> ｛each object value index｝ -->
 </script>
+<script id="ablum" type="text/html">
+    {{each images value }}
+    <div class="swiper-slide">
+        <img class="list-images" src="{{value.url}}" alt="">
+    </div>
+    {{/each }}
+    <!--升级后：Template upgrade: ｛each object as value index｝ -> ｛each object value index｝ -->
+</script>
 <script src="js/jq.js"></script>
 <script src="js/swiper-bundle.min.js"></script>
 <script src="js/list.js"></script>
 <script src="js/temp.js"></script>
 
 <script>
-    /*    var arr=[]
-        for(var i =1;i<30;i++){
-            arr.push({addr:"四川❤雅安",url:"./images/"+i+".jpg"})
-            console.log(JSON.stringify(arr))
-        }*/
-    var list_images = template('template', data);
+
+    var list_images = template('ablum', data);
     document.getElementById('list-images').innerHTML = list_images;
 
     /*    var ablum = template('template', data.images);
@@ -169,27 +171,16 @@
     //$('#list-images').append(render('template', list))
 
     var swiper = new Swiper(".swiper", {
-        zoom: true,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        effect: "coverflow",
-        grabCursor: true,
-        centeredSlides: true,
-        slidesPerView: "auto",
-        coverflowEffect: {
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
-        },
+        loop:true,
+        autoHeight: true,
+        spaceBetween: 20,
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
+            type:'fraction'
         },
     });
+
 
     var start_time = "2021-10-1 00:00:00";
     var together = new Date(start_time.replace(/-/g, "/"));
