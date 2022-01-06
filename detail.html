@@ -2,29 +2,163 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="pragma"  content="no-cache">//
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=2.0,user-scalable=1"/>
     <meta http-equiv="Cache-Control" content="no-cache,must-revalidate">
-    <meta  http-equiv="expires" content="0" >
+    <meta http-equiv="expires" content="0">
     <title></title>
     <link rel="stylesheet" href="./css/index.css">
     <style>
-        .section-detail{
+        .section-detail {
             padding: 11px 15px;
             color: #fff;
         }
+
+        .timeline {
+
+            border-bottom: .5px red dashed;
+          /*  padding: 5px 0;*/
+        }
+
+
+
+        .timeline > div{
+            display: inline-block;
+
+            text-align: left;
+            /*border-left:3px red solid ;*/
+            background: lightseagreen;
+            border-radius: 5px;
+        }
+        .timeline>div:first-child{
+            width: 5px;
+            height: 100%;
+            background: red;
+        }
+        .timeline>div:last-child{
+            width: calc(100% - 15px);
+        }
+        .timeline > div>div{
+            padding: 5px;
+            margin-left: 15px;
+        }
+    </style>
+    <style>
+        .sv-timeline {
+            margin:0;
+            font-size:14px;
+            list-style:none;
+        }
+        .sv-timeline-item {
+            position:relative;
+            padding-bottom:26px;
+        }
+        .sv-timeline-item__tail {
+            position:absolute;
+            left:5px;
+            /* height:100%;
+            */
+            border-left:2px solid rgb(11,189,135);
+            top:13px;
+            bottom:0;
+        }
+        .sv-timeline-item__node--primary {
+            background-color:#409eff;
+        }
+        .sv-timeline-item__node--large {
+            left:-2px;
+            width:14px;
+            height:14px;
+        }
+        .sv-timeline-item__content {
+            color:rgb(11,189,135) ;
+            padding: 5px 0;
+        }
+        .sv-timeline-item__timestamp.is-bottom {
+            font-size:16px;
+            margin-right:15px;
+     /*       display:flex;*/
+            align-items:center;
+            color: white;
+            text-align: justify;
+        }
+        .sv-timeline-item__timestamp {
+            color:#909399;
+            line-height:1;
+            font-size:13px;
+        }
+        .sv-timeline-item__wrapper {
+            position:relative;
+            padding-left:22px;
+            top:0px;
+        }
+        .sv-timeline-item__node--normal {
+            left:-1px;
+            width:12px;
+            height:12px;
+        }
+        .sv-timeline-item__node {
+            position:absolute;
+            border:rgb(11,189,135) 1px solid;
+            border-radius:50%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+        .sv-timeline-item__node>div {
+            width:8px;
+            height:8px;
+            background-color:rgb(11,189,135);
+            border-radius:50%;
+        }
+        .sv-timeline-item__wrapper {
+            /*display:flex;*/
+            text-align: left;
+        }
+
     </style>
 </head>
 <body>
-<section class="section-detail">
-    <div>title</div>
-    <div class="textright">2020-10-1<span>in </span></div>
-    <div class="content">
-
-    </div>
+<section class="section-detail" id="content">
+<!--    <div class="sv-timeline-item">
+        <div class="sv-timeline-item__tail"></div>
+        <div class="sv-timeline-item__node sv-timeline-item__node&#45;&#45;normal sv-timeline-item__node&#45;&#45;">
+            <div></div>
+            &lt;!&ndash;&ndash;&gt;
+        </div>
+        &lt;!&ndash;&ndash;&gt;
+        <div class="sv-timeline-item__wrapper">
+            &lt;!&ndash;&ndash;&gt;
+            <div class="sv-timeline-item__timestamp is-bottom"> 2008</div>
+            <div class="sv-timeline-item__content"> Компания была основана, и расположена в городах Чжэнчжоу и Шэньчжэнь.
+            </div>
+        </div>
+    </div>-->
 </section>
 <script src="js/jq.js"></script>
 <script src="js/list.js"></script>
+<script src="js/temp.js"></script>
+<script id="template" type="text/html">
+    {{ each timeline value }}
+    <div class="sv-timeline-item">
+        <div class="sv-timeline-item__tail"></div>
+        <div class="sv-timeline-item__node sv-timeline-item__node--normal sv-timeline-item__node--">
+            <div></div>
+            <!---->
+        </div>
+        <!---->
+        <div class="sv-timeline-item__wrapper">
+            <!---->
+            <div class="sv-timeline-item__timestamp is-bottom">{{value.content}}</div>
+            <div class="sv-timeline-item__content">in {{value.time}}</div>
+        </div>
+    </div>
+
+    {{/each }}
+</script>
 <script>
+    var list_images = template('template', data);
+    document.getElementById('content').innerHTML = list_images;
     const val = location.search.split("=")[1];
     const detailData = data.list[val];
     document.title = detailData.title;
