@@ -94,6 +94,10 @@
             padding: 11px 15px;
 
         }
+        .grid__item img{
+            padding: 5px;
+            background: white;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="css/style1.css" />
 
@@ -103,15 +107,15 @@
     <span><a href="./index.html">首页</a></span>
     <span><a href="./detail.html">经历</a></span>
 </header>
-<div>
+<!--<div>
     <div class="swiper main">
         <div class="swiper-wrapper list" id="">
-            <!-- <img src="./images/1.jpg" alt="">-->
+            &lt;!&ndash; <img src="./images/1.jpg" alt="">&ndash;&gt;
         </div>
         <div class="swiper-pagination"></div>
     </div>
-   <!-- <div  class="white toswiper" style="text-align: center;margin-top: 50px">乖，要左右滑动才能看其他的哦</div>-->
-</div>
+   &lt;!&ndash; <div  class="white toswiper" style="text-align: center;margin-top: 50px">乖，要左右滑动才能看其他的哦</div>&ndash;&gt;
+</div>-->
 <!--<div class="model">
 
     <div class="menu swiper">
@@ -124,7 +128,7 @@
     </div>
     <div class="white toswiper" style="text-align: center;margin-top: 50px">乖，要左右滑动才能看其他的哦</div>
 </div>-->
-<div class="container">
+<div class="container" style="top: 50px">
     <div class="content">
         <div class="grid" id="list">
          <!--   <div class="grid__item" data-size="1280x853">
@@ -150,7 +154,7 @@
     {{each images value }}
     <div class="grid__item" data-size="1280x853">
         <a href="{{value.url}}" class="img-wrap">
-            <img src="{{value.url}}" alt="img1" />
+            <img src="{{value.url}}"  alt="img1" />
             <div class="description description--grid">{{value.poem}}</div>
         </a>
     </div>
@@ -180,7 +184,7 @@
     })*/
     var list_images = template('ablum', data);
     document.getElementById('list').innerHTML = list_images;
-    document.getElementById('model-list').innerHTML = list_images;
+    //document.getElementById('model-list').innerHTML = list_images;
 /*    var mainswiper = new Swiper(".main", {
         zoom: true,
         loop: true,
