@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <meta http-equiv="pragma"  content="no-cache">
+    <meta http-equiv="pragma" content="no-cache">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=2.0,user-scalable=1"/>
     <meta http-equiv="Cache-Control" content="no-cache,must-revalidate">
-    <meta  http-equiv="expires" content="0" >
+    <meta http-equiv="expires" content="0">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/swiper.min.css">
     <style>
@@ -95,13 +95,20 @@
     </style>
 </head>
 <body>
-<div class="swiper main">
-    <div class="swiper-wrapper list" id="list">
-        <!-- <img src="./images/1.jpg" alt="">-->
+<header>
+    <span><a href="./index.html">首页</a></span>
+    <span><a href="./detail.html">经历</a></span>
+</header>
+<div>
+    <div class="swiper main">
+        <div class="swiper-wrapper list" id="list">
+            <!-- <img src="./images/1.jpg" alt="">-->
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
     </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
+    <div>左右滑动哦</div>
 </div>
 <div class="model">
 
@@ -113,6 +120,7 @@
         <div class="swiper-wrapper list" id="model-list"></div>
         <div class="swiper-pagination"></div>
     </div>
+    <div>左右滑动哦</div>
 </div>
 <!--<div class="swiper model">
     <div class="swiper-wrapper list" id="model-list"></div>
@@ -149,12 +157,10 @@
     document.getElementById('model-list').innerHTML = list_images;
     var mainswiper = new Swiper(".main", {
         zoom: true,
+        loop: true,
         //slidesPerView: 2,
         autoHeight: true,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
+
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
@@ -175,7 +181,7 @@
         zoom: true,
         //slidesPerView: 2,
         autoHeight: true,
-
+        loop: true,
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
