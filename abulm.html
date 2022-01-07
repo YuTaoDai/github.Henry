@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Main ceremony</title>
-    <meta http-equiv="pragma" content="no-cache">
+
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=2.0,user-scalable=1"/>
-    <meta http-equiv="Cache-Control" content="no-cache,must-revalidate">
-    <meta http-equiv="expires" content="0">
+
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/swiper.min.css">
     <style>
@@ -98,6 +97,16 @@
             padding: 5px;
             background: white;
         }
+        .top{
+            position:fixed;
+            right: 15px;
+            bottom: 15px;
+            background: url("./images/huadong.png");
+            cursor: pointer;
+            height: 25px;
+            width: 29px;
+            margin: 10px 0 0;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="css/style1.css" />
 
@@ -146,6 +155,22 @@
         <!-- /preview -->
     </div>
 </div>
+<div class="white" style="margin-top: 30px;padding: 15px 30px">
+    <div style="font-size: 1.5rem"> Special day</div>
+    <div> 2021-7-12 第一次牵你手手</div>
+    <div>2021-7-26 第一次发现我喜欢上你了</div>
+    <div>2021-8-21 主动告诉你我喜欢你晚上第一次一起住酒店</div>
+    <div>2021-9-10 第一次</div>
+    <div>2021-9-17 第一次一起过的我的生日</div>
+    <div>2021-9-18 第一次两人出去玩</div>
+    <div>2021-10-1 表白在一起，第一次出省旅游</div>
+    <div>2021-10-31 一个月拉</div>
+    <div>2021-11-30 两个月啦</div>
+    <div>2021-12-25 第一次一起过的圣诞节</div>
+    <div>2021-12-31 在一起第一次跨年同时也是一起度过的第三个月啦</div>
+    <div>2022-1-8 第一次一起过你的生日</div>
+</div>
+<a class="top" href="javascript:scroll(0,0)"></a>
 <script src="js/jq.js"></script>
 <script src="js/swiper-bundle.min.js"></script>
 <script src="js/list.js"></script>
@@ -154,7 +179,7 @@
     {{each images value }}
     <div class="grid__item" data-size="1280x853">
         <a href="{{value.url}}" class="img-wrap">
-            <img src="{{value.url}}"  alt="img1" />
+            <img src="{{value.url}}" data-title="" alt="" />
             <div class="description description--grid">{{value.poem}}</div>
         </a>
     </div>
@@ -173,15 +198,16 @@
 <script src="js/classie.js"></script>
 <script src="js/main.js"></script>
 <script>
-/*    $(".textright").click(function () {
-        $(".model").css("display", "none")
-    })
-    $(".modal:not('.menu')").click(function (e) {
-        $('.modal').toggle();
-        $('.menu').click(function (e) {
-            e.stopPropagation();
-        })
-    })*/
+    function pageScroll(){
+        //把内容滚动指定的像素数（第一个参数是向右滚动的像素数，第二个参数是向下滚动的像素数）
+        window.scrollBy(0,-100);
+        //延时递归调用，模拟滚动向上效果
+        scrolldelay = setTimeout('pageScroll()',100);
+        //获取scrollTop值，声明了DTD的标准网页取document.documentElement.scrollTop，否则取document.body.scrollTop；因为二者只有一个会生效，另一个就恒为0，所以取和值可以得到网页的真正的scrollTop值
+        var sTop=document.documentElement.scrollTop+document.body.scrollTop;
+        //判断当页面到达顶部，取消延时代码（否则页面滚动到顶部会无法再向下正常浏览页面）
+        if(sTop==0) clearTimeout(scrolldelay);
+    }
     var list_images = template('ablum', data);
     document.getElementById('list').innerHTML = list_images;
     //document.getElementById('model-list').innerHTML = list_images;

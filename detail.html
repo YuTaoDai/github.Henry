@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./css/index.css">
     <style>
         .section-detail {
-            padding: 11px 15px;
+            padding: 11px 25px;
             color: #fff;
             top: 50px;
         }
@@ -127,6 +127,9 @@
 <section class="section-detail" id="content">
 
 </section>
+<div>
+
+</div>
 <script src="js/jq.js"></script>
 <script src="js/list.js"></script>
 <script src="js/temp.js"></script>
@@ -153,7 +156,7 @@
     document.getElementById('content').innerHTML = list_images;
     const val = location.search.split("=")[1];
     const detailData = data.list[val];
-    document.title = detailData.title;
+    //document.title = detailData.title;
     console.log(detailData);
     $("body").html(detailData);
 </script>
