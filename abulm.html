@@ -10,9 +10,6 @@
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/swiper.min.css">
     <style>
-        .swiper {
-            padding-top: 80px;
-        }
 
         .swiper-zoom-container {
             height: 100%;
@@ -30,7 +27,7 @@
         .addr {
             position: absolute;
             right: 45%;
-            bottom: 0px;
+            bottom: 5px;
             background-image: linear-gradient(135deg, blue, pink);
             background-clip: text;
             -webkit-background-clip: text;
@@ -39,7 +36,7 @@
         }
 
         .swiper-pagination-fraction {
-            bottom: 20px;
+            bottom:0;
             color: white;
             text-align: right;
             padding-right: 25px;
@@ -92,7 +89,14 @@
         .menu .textright .close:last-child {
             transform: rotate(45deg) translateX(-1px);
         }
+        .poem{
+            text-align: center;
+            padding: 11px 15px;
+
+        }
     </style>
+    <link rel="stylesheet" type="text/css" href="css/style1.css" />
+
 </head>
 <body>
 <header>
@@ -101,16 +105,14 @@
 </header>
 <div>
     <div class="swiper main">
-        <div class="swiper-wrapper list" id="list">
+        <div class="swiper-wrapper list" id="">
             <!-- <img src="./images/1.jpg" alt="">-->
         </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
     </div>
-    <div>左右滑动哦</div>
+   <!-- <div  class="white toswiper" style="text-align: center;margin-top: 50px">乖，要左右滑动才能看其他的哦</div>-->
 </div>
-<div class="model">
+<!--<div class="model">
 
     <div class="menu swiper">
         <div class="textright">
@@ -120,30 +122,54 @@
         <div class="swiper-wrapper list" id="model-list"></div>
         <div class="swiper-pagination"></div>
     </div>
-    <div>左右滑动哦</div>
-</div>
-<!--<div class="swiper model">
-    <div class="swiper-wrapper list" id="model-list"></div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
+    <div class="white toswiper" style="text-align: center;margin-top: 50px">乖，要左右滑动才能看其他的哦</div>
 </div>-->
+<div class="container">
+    <div class="content">
+        <div class="grid" id="list">
+         <!--   <div class="grid__item" data-size="1280x853">
+                <a href="images/1.jpg" class="img-wrap">
+                    <img src="images/1.jpg" alt="img1" />
+                <div class="description description&#45;&#45;grid">Assemblage</div>
+            </a>
+            </div>-->
+        </div>
+        <!-- /grid -->
+        <div class="preview">
+            <button class="action action--close"><i class="fa fa-times">x</i><span class="text-hidden">Close</span></button>
+            <div class="description description--preview"></div>
+        </div>
+        <!-- /preview -->
+    </div>
+</div>
 <script src="js/jq.js"></script>
 <script src="js/swiper-bundle.min.js"></script>
 <script src="js/list.js"></script>
 <script src="js/temp.js"></script>
 <script id="ablum" type="text/html">
     {{each images value }}
-    <div class="swiper-slide" data-url="{{value.url}}">
+    <div class="grid__item" data-size="1280x853">
+        <a href="{{value.url}}" class="img-wrap">
+            <img src="{{value.url}}" alt="img1" />
+            <div class="description description--grid">{{value.poem}}</div>
+        </a>
+    </div>
+<!--    <div class="swiper-slide" data-url="{{value.url}}">
         <div class="swiper-zoom-container">
             <img src="{{value.url}}"/>
             <span class="addr">in {{value.addr}}</span>
         </div>
-    </div>
+        <div class="poem white">{{value.poem}}</div>
+    </div>-->
     {{/each }}
 </script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/modernizr-custom.js"></script>
+<script src="js/masonry.pkgd.min.js"></script>
+<script src="js/classie.js"></script>
+<script src="js/main.js"></script>
 <script>
-    $(".textright").click(function () {
+/*    $(".textright").click(function () {
         $(".model").css("display", "none")
     })
     $(".modal:not('.menu')").click(function (e) {
@@ -151,11 +177,11 @@
         $('.menu').click(function (e) {
             e.stopPropagation();
         })
-    })
+    })*/
     var list_images = template('ablum', data);
     document.getElementById('list').innerHTML = list_images;
     document.getElementById('model-list').innerHTML = list_images;
-    var mainswiper = new Swiper(".main", {
+/*    var mainswiper = new Swiper(".main", {
         zoom: true,
         loop: true,
         //slidesPerView: 2,
@@ -176,8 +202,8 @@
                 console.log(event);
             },
         }
-    });
-    var modalswiper = new Swiper(".menu", {
+    });*/
+/*    var modalswiper = new Swiper(".menu", {
         zoom: true,
         //slidesPerView: 2,
         autoHeight: true,
@@ -197,7 +223,53 @@
 
             },
         }
-    });
+    });*/
+</script>
+<script>
+    (function() {
+        // create SVG circle overlay and append it to the preview element
+        function createCircleOverlay(previewEl) {
+            var dummy = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            dummy.setAttributeNS(null, 'version', '1.1');
+            dummy.setAttributeNS(null, 'width', '100%');
+            dummy.setAttributeNS(null, 'height', '100%');
+            dummy.setAttributeNS(null, 'class', 'overlay');
+            var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            circle.setAttributeNS(null, 'cx', 0);
+            circle.setAttributeNS(null, 'cy', 0);
+            circle.setAttributeNS(null, 'r', Math.sqrt(Math.pow(previewEl.offsetWidth,2) + Math.pow(previewEl.offsetHeight,2)));
+            dummy.appendChild(g);
+            g.appendChild(circle);
+            previewEl.appendChild(dummy);
+        }
+
+        new GridFx(document.querySelector('.grid'), {
+            onInit : function(instance) {
+                createCircleOverlay(instance.previewEl);
+            },
+            onResize : function(instance) {
+                instance.previewEl.querySelector('svg circle').setAttributeNS(null, 'r', Math.sqrt(Math.pow(instance.previewEl.offsetWidth,2) + Math.pow(instance.previewEl.offsetHeight,2)));
+            },
+            onOpenItem : function(instance, item) {
+                // item's image
+                var gridImg = item.querySelector('img'),
+                    gridImgOffset = gridImg.getBoundingClientRect(),
+                    win = {width: document.documentElement.clientWidth, height: window.innerHeight},
+                    SVGCircleGroupEl = instance.previewEl.querySelector('svg > g'),
+                    SVGCircleEl = SVGCircleGroupEl.querySelector('circle');
+
+                SVGCircleEl.setAttributeNS(null, 'r', Math.sqrt(Math.pow(instance.previewEl.offsetWidth,2) + Math.pow(instance.previewEl.offsetHeight,2)));
+                // set the transform for the SVG g node. This will animate the circle overlay. The origin of the circle depends on the position of the clicked item.
+                if( gridImgOffset.left + gridImg.offsetWidth/2 < win.width/2 ) {
+                    SVGCircleGroupEl.setAttributeNS(null, 'transform', 'translate(' + win.width + ', ' + (gridImgOffset.top + gridImg.offsetHeight/2 < win.height/2 ? win.height : 0) + ')');
+                }
+                else {
+                    SVGCircleGroupEl.setAttributeNS(null, 'transform', 'translate(0, ' + (gridImgOffset.top + gridImg.offsetHeight/2 < win.height/2 ? win.height : 0) + ')');
+                }
+            }
+        });
+    })();
 </script>
 </body>
 </html>

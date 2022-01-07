@@ -128,7 +128,7 @@ section > * {
     }
 }
 
-.scaleele {
+.scaleele ,.toswiper{
     animation: _scale 1.5s infinite;
     -webkit-animation: _scale 1.5s infinite;
     -moz-animation: _scale 1.5s infinite;
