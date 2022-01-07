@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=2.0,user-scalable=1"/>
-    <meta http-equiv="pragma"  content="no-cache">
+    <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache,must-revalidate">
-    <meta  http-equiv="expires" content="0" >
+    <meta http-equiv="expires" content="0">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/swiper.min.css">
     <style>
@@ -30,7 +30,8 @@
             background-size: cover;
 
         }
-        .swiper-pagination{
+
+        .swiper-pagination {
             color: white;
         }
 
@@ -39,8 +40,8 @@
 </head>
 <body>
 <header>
-   <span><a href="./abulm.html">经历</a></span>
-    <span><a href="./detail.html">图库</a></span>
+    <span><a href="./abulm.html">图库</a></span>
+    <span><a href="./detail.html">经历</a></span>
 </header>
 <section class="section">
     <div class="section-header">
@@ -170,13 +171,13 @@
     //$('#list-images').append(render('template', list))
 
     var swiper = new Swiper(".swiper", {
-        loop:true,
+        loop: true,
         autoHeight: true,
         spaceBetween: 20,
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
-            type:'fraction'
+            type: 'fraction'
         },
     });
 

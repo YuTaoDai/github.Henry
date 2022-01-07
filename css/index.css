@@ -42,6 +42,9 @@ header > span {
     padding: 0 5px;
     margin-right: 15px;
 }
+header a {
+    color: white;
+}
 
 section {
     height: 100%;
@@ -195,11 +198,11 @@ svg {
 }
 
 .section-dinner h2 {
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 .digit {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: white;
 }
 
