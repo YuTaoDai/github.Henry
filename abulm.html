@@ -198,6 +198,107 @@
 <script src="js/classie.js"></script>
 <script src="js/main.js"></script>
 <script>
+    //处理图片懒加载
+    function lazyload (option) {
+        //如果不传递视图对象，则默认视图对象为window
+        var viewDom = option || window,
+            scroll_top, //滚动条Y轴距离
+            scroll_left, //滚动条X轴距离
+            viewDomWidth, //视图宽
+            viewDomHeight,//视图高
+            viewDomLeft, //视图左偏移量
+            viewDomTop, //视图上偏移量
+            imgWidth, //img宽
+            imgHeight, //img高
+            imgLeft, //img左偏移量
+            imgTop, //img上偏移量
+            imgArr = [],
+            doc = document.documentElement;
+
+        //获取视图元素宽高,左上偏移量，分为window或普通dom两种情况
+        if (viewDom === window) {
+            viewDomWidth = doc.clientWidth;
+            viewDomHeight = doc.clientHeight;
+            viewDomLeft = doc.offsetLeft;
+            viewDomTop = doc.offsetTop;
+        }else{
+            viewDomWidth = viewDom.offsetWidth;
+            viewDomHeight = viewDom.offsetHeight;
+            viewDomLeft = viewDom.offsetLeft;
+            viewDomTop = viewDom.offsetTop;
+        };
+
+        /**
+         * @desc 将nodeList转为数组，方便操作
+         * @param {object} data nodelist对象
+         */
+        function nodeListToArr(data) {
+            var arr = [];
+            try{
+                //ie8及以下不支
+                arr = Array.prototype.slice.call(data);
+            }catch(e){
+                //兼容写法
+                var len = data.length;
+                for(var i = 0; i < len; i++){
+                    arr.push(data[i]);
+                }
+            };
+            return arr;
+        };
+        //取得所有需要懒加载的dom元素
+        var imgNode = document.querySelectorAll("[lazyImg-src]");
+        imgArr = nodeListToArr(imgNode);
+        //替换路径函数,懒加载核心函数
+        function replaceUrl () {
+            //只有img数组不为空，才会执行替换路径的操作
+            if(imgArr.length){
+                var i = 0;
+                //获取视图元素滚动条滚动距离
+                if (viewDom === window) {
+                    scroll_top = doc.scrollTop;
+                    scroll_left = doc.scrollLeft;
+                }else{
+                    scroll_top = viewDom.scrollTop;
+                    scroll_left = viewDom.scrollLeft;
+                };
+                //遍历需要懒加载的dom节点
+                for (; i<imgArr.length; i++) {
+                    //获取当前元素的宽高
+                    imgWidth = imgArr[i].offsetWidth;
+                    imgHeight = imgArr[i].offsetHeight;
+                    //当前元素随着滚动的变化的偏移量为
+                    imgLeft = imgArr[i].offsetLeft - scroll_left;
+                    imgTop = imgArr[i].offsetTop - scroll_top;
+                    //横向判断是否进入视图元素
+                    var boundaryLeft = imgLeft + imgWidth - viewDomLeft;
+                    var boundaryRight = viewDomLeft + viewDomWidth - imgLeft;
+                    //同理纵向判断是否进入视图元素
+                    var boundaryTop = imgTop + imgHeight - viewDomTop;
+                    var boundaryBottom = viewDomTop + viewDomHeight - imgTop;
+                    if(boundaryLeft>0 && boundaryRight>0 && boundaryTop>0 && boundaryBottom>0) {
+                        //替换图片路径,添加判断，img替换src，非img替换background
+                        if(imgArr[i].nodeName === "IMG"){
+                            imgArr[i].src = imgArr[i].attributes['lazyimg-src'].value;
+                        }else{
+                            //不是图片的替换背景图
+                            // imgArr[i].style.backgroundImage = imgArr[i].attributes['lazyimg-src'].value;
+                        };
+                        //操作完一项就删除一项，同时重置i;
+                        imgArr.splice(i,1);
+                        i -= 1;
+                    };
+                };
+            };
+        };
+        //自调
+        replaceUrl();
+        //添加事件监听
+        viewDom.addEventListener("scroll",replaceUrl);
+    };
+    //测试调用，默认绑定window，或传递你需要监听的dom对象，调用就2步
+    var container = document.querySelector("#list");
+    lazyload(container)
     function pageScroll(){
         //把内容滚动指定的像素数（第一个参数是向右滚动的像素数，第二个参数是向下滚动的像素数）
         window.scrollBy(0,-100);
