@@ -43,6 +43,7 @@
 .img-wrap img {
 	display: block;
 	max-width: 100%;
+	/*min-height: 250px;*/
 }
 
 .preview {

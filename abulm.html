@@ -116,36 +116,15 @@
     <span><a href="./index.html">首页</a></span>
     <span><a href="./detail.html">经历</a></span>
 </header>
-<!--<div>
-    <div class="swiper main">
-        <div class="swiper-wrapper list" id="">
-            &lt;!&ndash; <img src="./images/1.jpg" alt="">&ndash;&gt;
-        </div>
-        <div class="swiper-pagination"></div>
-    </div>
-   &lt;!&ndash; <div  class="white toswiper" style="text-align: center;margin-top: 50px">乖，要左右滑动才能看其他的哦</div>&ndash;&gt;
-</div>-->
-<!--<div class="model">
-
-    <div class="menu swiper">
-        <div class="textright">
-            <span class="close"></span>
-            <span class="close"></span>
-        </div>
-        <div class="swiper-wrapper list" id="model-list"></div>
-        <div class="swiper-pagination"></div>
-    </div>
-    <div class="white toswiper" style="text-align: center;margin-top: 50px">乖，要左右滑动才能看其他的哦</div>
-</div>-->
 <div class="container" style="top: 50px">
     <div class="content">
         <div class="grid" id="list">
-         <!--   <div class="grid__item" data-size="1280x853">
-                <a href="images/1.jpg" class="img-wrap">
-                    <img src="images/1.jpg" alt="img1" />
-                <div class="description description&#45;&#45;grid">Assemblage</div>
-            </a>
-            </div>-->
+            <!--   <div class="grid__item" data-size="1280x853">
+                   <a href="images/1.jpg" class="img-wrap">
+                       <img src="images/1.jpg" alt="img1" />
+                   <div class="description description&#45;&#45;grid">Assemblage</div>
+               </a>
+               </div>-->
         </div>
         <!-- /grid -->
         <div class="preview">
@@ -178,19 +157,11 @@
 <script src="js/jquery.lazyload.min.js"></script>
 <script id="ablum" type="text/html">
     {{each images value }}
-    <div class="grid__item" data-size="1280x853">
+    <div class="grid__item" >
         <a href="{{value.url}}" class="img-wrap">
             <img class="lazy" src="{{value.url}}" data-original="{{value.url}}"alt="" />
-          <!--  <div class="description description&#45;&#45;grid">{{value.poem}}</div>-->
         </a>
     </div>
-<!--    <div class="swiper-slide" data-url="{{value.url}}">
-        <div class="swiper-zoom-container">
-            <img src="{{value.url}}"/>
-            <span class="addr">in {{value.addr}}</span>
-        </div>
-        <div class="poem white">{{value.poem}}</div>
-    </div>-->
     {{/each }}
 </script>
 <script src="js/imagesloaded.pkgd.min.js"></script>
@@ -213,64 +184,49 @@
     }
     var list_images = template('ablum', data);
     document.getElementById('list').innerHTML = list_images;
-    $("img.lazy").lazyload({
-        placeholder : "images/grey.gif", //用图片提前占位
-        // placeholder,值为某一图片路径.此图片用来占据将要加载的图片的位置,待图片加载时,占位图则会隐藏
-        effect: "fadeIn", // 载入使用何种效果
-        // effect(特效),值有show(直接显示),fadeIn(淡入),slideDown(下拉)等,常用fadeIn
-        threshold: 200, // 提前开始加载
-        // threshold,值为数字,代表页面高度.如设置为200,表示滚动条在离目标位置还有200的高度时就开始加载图片,可以做到不让用户察觉
-        event: 'click',  // 事件触发时才加载
-        // event,值有click(点击),mouseover(鼠标划过),sporty(运动的),foobar(…).可以实现鼠标莫过或点击图片才开始加载,后两个值未测试…
-        container: $("#container"),  // 对某容器中的图片实现效果
-        // container,值为某容器.lazyload默认在拉动浏览器滚动条时生效,这个参数可以让你在拉动某DIV的滚动条时依次加载其中的图片
-        failurelimit : 10 // 图片排序混乱时
-        // failurelimit,值为数字.lazyload默认在找到第一张不在可见区域里的图片时则不再继续加载,但当HTML容器混乱的时候可能出现可见区域内图片并没加载出来的情况,failurelimit意在加载N张可见区域外的图片,以避免出现这个问题.
-    });
+
     //document.getElementById('model-list').innerHTML = list_images;
-/*    var mainswiper = new Swiper(".main", {
-        zoom: true,
-        loop: true,
-        //slidesPerView: 2,
-        autoHeight: true,
-
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-            type: "fraction"
-        },
-        on: {
-            tap: function (swiper, event) {
-                event.stopPropagation();
-                event.preventDefault();
-                $(".model").css("display", "flex")
-                console.log(swiper.activeIndex)
-                modalswiper.slideTo(swiper.activeIndex, 100, false)
-                console.log(event);
+    /*    var mainswiper = new Swiper(".main", {
+            zoom: true,
+            loop: true,
+            //slidesPerView: 2,
+            autoHeight: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                type: "fraction"
             },
-        }
-    });*/
-/*    var modalswiper = new Swiper(".menu", {
-        zoom: true,
-        //slidesPerView: 2,
-        autoHeight: true,
-        loop: true,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-            type: "fraction"
-        },
-        on: {
-            swiper: function (swiper, event) {
-                event.stopPropagation();
-                event.preventDefault();
-                $(".model").css("display", "none")
-                mainswiper.slideTo(swiper.activeIndex, 100, false)
-                console.log(event);
-
+            on: {
+                tap: function (swiper, event) {
+                    event.stopPropagation();
+                    event.preventDefault();
+                    $(".model").css("display", "flex")
+                    console.log(swiper.activeIndex)
+                    modalswiper.slideTo(swiper.activeIndex, 100, false)
+                    console.log(event);
+                },
+            }
+        });*/
+    /*    var modalswiper = new Swiper(".menu", {
+            zoom: true,
+            //slidesPerView: 2,
+            autoHeight: true,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                type: "fraction"
             },
-        }
-    });*/
+            on: {
+                swiper: function (swiper, event) {
+                    event.stopPropagation();
+                    event.preventDefault();
+                    $(".model").css("display", "none")
+                    mainswiper.slideTo(swiper.activeIndex, 100, false)
+                    console.log(event);
+                },
+            }
+        });*/
 </script>
 <script>
     (function() {
