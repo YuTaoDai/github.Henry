@@ -199,6 +199,20 @@
 <script src="js/classie.js"></script>
 <script src="js/main.js"></script>
 <script>
+
+
+    function pageScroll(){
+        //把内容滚动指定的像素数（第一个参数是向右滚动的像素数，第二个参数是向下滚动的像素数）
+        window.scrollBy(0,-100);
+        //延时递归调用，模拟滚动向上效果
+        scrolldelay = setTimeout('pageScroll()',100);
+        //获取scrollTop值，声明了DTD的标准网页取document.documentElement.scrollTop，否则取document.body.scrollTop；因为二者只有一个会生效，另一个就恒为0，所以取和值可以得到网页的真正的scrollTop值
+        var sTop=document.documentElement.scrollTop+document.body.scrollTop;
+        //判断当页面到达顶部，取消延时代码（否则页面滚动到顶部会无法再向下正常浏览页面）
+        if(sTop==0) clearTimeout(scrolldelay);
+    }
+    var list_images = template('ablum', data);
+    document.getElementById('list').innerHTML = list_images;
     $("img.lazy").lazyload({
         placeholder : "images/grey.gif", //用图片提前占位
         // placeholder,值为某一图片路径.此图片用来占据将要加载的图片的位置,待图片加载时,占位图则会隐藏
@@ -213,19 +227,6 @@
         failurelimit : 10 // 图片排序混乱时
         // failurelimit,值为数字.lazyload默认在找到第一张不在可见区域里的图片时则不再继续加载,但当HTML容器混乱的时候可能出现可见区域内图片并没加载出来的情况,failurelimit意在加载N张可见区域外的图片,以避免出现这个问题.
     });
-
-    function pageScroll(){
-        //把内容滚动指定的像素数（第一个参数是向右滚动的像素数，第二个参数是向下滚动的像素数）
-        window.scrollBy(0,-100);
-        //延时递归调用，模拟滚动向上效果
-        scrolldelay = setTimeout('pageScroll()',100);
-        //获取scrollTop值，声明了DTD的标准网页取document.documentElement.scrollTop，否则取document.body.scrollTop；因为二者只有一个会生效，另一个就恒为0，所以取和值可以得到网页的真正的scrollTop值
-        var sTop=document.documentElement.scrollTop+document.body.scrollTop;
-        //判断当页面到达顶部，取消延时代码（否则页面滚动到顶部会无法再向下正常浏览页面）
-        if(sTop==0) clearTimeout(scrolldelay);
-    }
-    var list_images = template('ablum', data);
-    document.getElementById('list').innerHTML = list_images;
     //document.getElementById('model-list').innerHTML = list_images;
 /*    var mainswiper = new Swiper(".main", {
         zoom: true,
